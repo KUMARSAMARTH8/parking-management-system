@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images.png" class="logo">
+            <h1>Parking Management System</h1>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <div id="error-message" style="color: red; margin-top: 10px;"></div>
+
+            <button type="submit" class="btn-submit">Login</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <marquee behavior="scroll" direction="left">Welcome to PMS Website !</marquee>
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* GENERAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #04f408, #c9ea8d);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADER */
+.header {
+  background-color: #3208ef;
+  color: rgb(246, 244, 240);
+  padding: 20px;
+  width: 100%;
+  border-bottom: 2px solid #007BFF;
+  text-align: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 50px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+/* LOGIN CONTAINER */
+.login-container {
+  margin: 40px 30px;
+  padding: 40px;
+  width: 90%;
+  max-width: 350px;
+  min-height: 250px ;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.login-container h2 {
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+/* INPUT GROUP */
+.input-group {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.input-group i {
+  display: block; /* Ensure label takes full width */
+  margin-bottom: 8px; /* Space between label and input */
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: none;
+  border-radius: 16px;
+  background-color: #fff;
+  font-size: 18px;
+}
+.btn-submit {
+  width: 50%;
+  padding: 10px;
+  background: linear-gradient(to right, #007BFF, #00C6FF);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.btn-submit:hover {
+  transform: scale(1.03);
+  background: linear-gradient(to right, #0056b3, #007BFF);
+}
+.footer {
+  background-color: #3208ef;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  border-top: 2px solid #007BFF;
+  margin-top: auto;
+}
+footer marquee {
+  color: orange;
+  font-weight: bold;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  .login-container {
+    padding: 20px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

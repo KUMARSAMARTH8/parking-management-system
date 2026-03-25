@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images.png" alt="KIIT logo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/100x40/fe7f00/ffffff?text=KIIT';">
+            </div>
+            <div class="title">
+                <span class="main-title">Parking Management System</span>
+            </div>
+            <div class="time">
+                <div id="datetime">Time</div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">OPTIONS</div>
+            <ul class="sidebar-menu">
+
+                <li id="nav-report"><i class="fas fa-chart-line"></i> Report</li>
+                <li><i class="fas fa-file-excel"></i> <a href="http://127.0.0.1:5000/excel" target="_blank"
+                        style="color: inherit; text-decoration: none;">Excel</a></li>
+                <li id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</li>
+            </ul>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Data Entry Form -->
+            <div class="form-box" id="data-entry-container">
+                <h1>Daily Parking Management & Data Entry Panel</h1>
+                <form id="data-form">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" placeholder="DD-MM-YYYY" required>
+
+                    <label for="vehicle">Select Vehicle:</label>
+                    <select id="vehicle" required>
+                        <option value="" disabled selected>Select Vehicle</option>
+                        <option value="Bicycle">Bicycle</option>
+                        <option value="Motorcycle">Motorcycle</option>
+                        <option value="Car">Car</option>
+
+                    </select>
+
+                    <label for="personnel">Select Personnel:</label>
+                    <select id="personnel" required>
+                        <option value="" disabled selected>Select Personnel</option>
+                        <option value="Student">Student</option>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Staff">Staff</option>
+
+                    </select>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>No. of Passengers</label>
+                            <input type="number" id="passengers" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vehicle no.</label>
+                            <input type="text" id="vehicleNo" required>
+                        </div>
+
+                    </div>
+
+                    <label for="entry time">Entry Time(hrs):</label>
+                    <input type="text" id="opening" placeholder="HH:MM (e.g., 14:30)" pattern="^([01]\d|2[0-3]):([0-5]\d)$" required>
+                    <!-- <input type="time" id="opening" step="60" required> -->
+                    <!-- <input type="number" step="0.01" id="opening" placeholder="Enter entry time" required> -->
+               
+
+                    <!-- <label for="entry time">Entry Time(in hrs)</label>
+                    <input type="number" id="entry time" name="entry time" min="0" max="24" step="0.5"> -->
+
+                    <label for="exit time">Enter Exit Time(hrs):</label>
+                    <input type="text" id="received" placeholder="HH:MM (e.g., 18:45)" pattern="^([01]\d|2[0-3]):([0-5]\d)$" required>
+                    <!-- <input type="time" id="received" step="60" required> -->
+                    <!-- <input type="number" step="0.01" id="received" placeholder="Enter exit time" required> -->
+
+                    <!-- <label for="exit time">Exit Time(in hrs)</label>
+                    <input type="number" id="exit time" name="exit time" min="0" max="24" step="0.5"> -->
+
+                    <label for="extra">Enter extra hours:</label>
+                    <input type="number" step="0.01" id="extra" placeholder="Enter extra hours">
+
+                    <label for="sap">Total Hours:</label>
+                    <input type="text" id="sap" readonly>
+
+                    <label for="Total">Total Cost:</label>
+                    <div class="Total-container">
+                        <input type="text" id="Total" placeholder="Auto Calculated Field" readonly>
+                        <button type="button" id="calcTotal" class="btn-blue">Calculate</button>
+                    </div>
+
+
+
+                    <label for="remarks">Remarks</label>
+                    <textarea id="remarks" placeholder="Enter Any Remarks...." rows="4"></textarea>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-submit">Submit</button>
+                        <button type="reset" class="btn-reset">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Report View Container -->
+            <div class="report-container hidden" id="report-container">
+                <div class="report-header">Parking Management System — Report</div>
+                <div class="report-filters">
+                    <div class="filter-group">
+                        <label for="filter-date">Filter by Date:</label>
+                        <input type="date" id="filter-date">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-vehicle-no">Filter by Car Number:</label>
+                        <input type="text" id="filter-vehicle-no" placeholder="e.g. OD01AB1234">
+                    </div>
+                    <button id="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                    <button id="clear-filter-btn" style="background:#6c757d;color:#fff;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;margin-left:6px;"><i class="fas fa-times"></i> Clear</button>
+                </div>
+
+                <!-- Summary Bar -->
+                <div id="report-summary" style="display:none; background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:10px 18px; margin-bottom:14px; font-size:15px; display:flex; gap:30px; align-items:center;">
+                    <span>📋 Total Records: <strong id="summary-count">0</strong></span>
+                    <span>💰 Total Collection: <strong id="summary-total">₹0.00</strong></span>
+                </div>
+
+                <div class="report-table-wrapper">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Vehicle Type</th>
+                                <th>Personnel</th>
+                                <th>Passengers</th>
+                                <th>Vehicle No.</th>
+                                <th>Entry Time</th>
+                                <th>Exit Time</th>
+                                <th>Extra Hrs</th>
+                                <th>Total Hrs</th>
+                                <th>Total Cost (₹)</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-table-body">
+                            <!-- Data will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bottom-bar">
+        <marquee behavior="scroll" direction="left">
+            <em>"Thanks for visiting our Daily Parking Management Entry Page ."</em>
+        </marquee>
+    </footer>
+
+    <!-- Welcome Message -->
+    <div class="welcome-bar">Welcome, User</div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <p>Data Submitted Successfully!</p>
+            <button id="close-modal-btn">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
